@@ -4,7 +4,6 @@
 //It will essentially replace the 'export const dynamic' const.
 
 import Messages from '@/components/messages';
-import { unstable_noStore } from 'next/cache';
 
 //'revalidate' is a special const in nextJS that works similar to the config
 //setting in the fetch request. It must be exported and must be named 'revalidate'
@@ -33,6 +32,8 @@ export default async function MessagesPage() {
       //You can set the number value to however many seconds you want the value
       //cached for
       revalidate: 5,
+      //tag takes in an array of strings
+      tags: ['msg', 'btx', 'spr']
     }
   });
   const messages = await response.json();

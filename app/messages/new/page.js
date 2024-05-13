@@ -1,4 +1,7 @@
 import { redirect } from 'next/navigation';
+import { revalidateTag } from 'next/cache';
+//the revalidateTag function looks for tags as seen configed on the page.js file
+//to know which paths to revalidate
 
 import { addMessage } from '@/lib/messages';
 
@@ -8,6 +11,7 @@ export default function NewMessagePage() {
 
     const message = formData.get('message');
     addMessage(message);
+    revalidateTag('msg');
     redirect('/messages');
   }
 
